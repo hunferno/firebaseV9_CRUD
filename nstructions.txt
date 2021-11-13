@@ -1,0 +1,44 @@
+- Créer un nouveau projet sur firebase
+- récupérer le CDN
+- aller dans "Firestore Database" -> "Créer une base de données"
+- choisir le mode désiré et l'emplacement du cloud
+- dans les règles, autoriser la lecture et l'ecriture mettant à "true"
+- dans les données, créer une nouvelle collection et un model associé
+
+- npm install firebase
+- créer un fichier firebase_config.js dans le src
+    - Coller le CDN
+
+    LES VAR ENV EN REACT SONT TJR PRECEDEES DE "REACT_APP"
+    - Créer un variable env
+        - npm i dotenv
+        - créer un fichier .env au meme niveau que .gitignore
+        - redémarrer le server
+    - require("dotenv").config() dans le fichier firebase
+
+UTILISATION DES FONCTIONS DE FIREBASE ==> TOUT EN ASYNC AWAIT
+
+INIT la DB : 
+- const app = initializeApp(firebaseConfig) --> import from 'firebase/app'
+
+CONNECTER LA DB :
+- const db = getFirestore(app) --> import from 'firebase/firestore'
+
+SELECT COLLECTION FROM DB:
+- collection(db, "collectionName") --> import from 'firebase/firestore'
+
+GET ALL DATA FROM A COLLECTION :
+- getDocs(collection) --> import from 'firebase/firestore'
+ENSUITE MAPPER CETTE DATA AFIN D'AVOIR L'OBJET:
+setUsers(data.docs.map((doc)=>({...doc.data()})))
+
+ADD DATA TO DB:
+- addDoc(collection, {object to add(name,age)}) --> import from 'firebase/firestore'
+
+UPDATE DOC WITH DB,COLLECTION_NAME, ID OF THE DOC:
+- doc(db, 'users', idOfTheSpecificDoc) --> import from 'firebase/firestore'
+- updateDoc(doc, {values to update}) --> import from 'firebase/firestore'
+
+DELETE DOC TO DB:
+- doc(db, 'users', idOfTheSpecificDoc)
+- deleteDoc(doc)
